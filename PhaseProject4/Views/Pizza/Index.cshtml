@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PhaseProject4.Models.Pizza>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous" />
+
+
+
+    <title>Product Menu</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+<div class="card col-md-3 d-flex justify-content-around">
+    <img src=@item.image_url class="card-img-top rounded mx-auto" alt="..." style="height: 15rem; width: 18rem">
+    <div class="card-body">
+        <h4 class="card-title">@Html.DisplayFor(modelItem => item.pname)</h4>
+        <div style="max-height: 100px;overflow: hidden;text-overflow: ellipsis;" class="my-2">
+            <p class="card-text">Pizza</p>
+        </div>
+        <p><span class="fw-bold">Crust</span>: @Html.DisplayFor(modelItem => item.crust)</p>
+        <div style="max-height: 100px;overflow: hidden;text-overflow: ellipsis;" class="my-2">
+            <p><span class="fw-bold">Description:</span>: @Html.DisplayFor(modelItem => item.desc)</p>
+        </div>
+        <p><span class="fw-bold">Price</span>: @Html.DisplayFor(modelItem => item.price)&#x20b9; </p>
+        <button class="btn btn-primary w-100" onclick="location.href='@Url.Action("details", "pizza" ,new {id=@item.pid})'">Details</button>
+        <button id=@item.pid class="btn btn-success w-100" onclick="location.href='@Url.Action("checkout", "pizza", new {id=@item.pid})'">Buy Here</button>
+    </div>
+</div>            }
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                crossorigin="anonymous"></script>
+    </div>
+</body>
+</html>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; Made by DS Rahul</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Contact</a></li>
+        <li class="list-inline-item"><a href="#">Terms and Conditions</a></li>
+    </ul>
+</footer>
